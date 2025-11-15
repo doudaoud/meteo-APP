@@ -11,7 +11,7 @@ function App() {
       <div>
         <nav>
           <h3 className='title-app'>
-            Weather App
+            Weather
           </h3>
           
         </nav>
