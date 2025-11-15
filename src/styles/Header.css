@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    /* padding: 0; */
+    
+}
+header{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* background-color: aqua; */
+  height: 68px;
+  border-bottom: 1px solid rgb(219, 234, 254) ;
+    /* background-image: linear-gradient(to right,rgb(43, 126, 255),rgb(22, 94, 252)); */
+}
+.title-app{
+  background-image: linear-gradient(to right,rgb(43, 126, 255),rgb(22, 94, 252));
+ -webkit-background-clip: text;
+  color: transparent;
+  font-family: sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+
+}
+.mood-button{
+    outline: none;
+    border: none;
+    color: rgb(22, 94, 252);
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 10px  rgba(0, 0, 0, 0.385);
+    transition: transform 1s ;
+}
+.mood-button:hover{
+  transform: scale(1.1);
+}
+.mood-icon{
+  
+}
