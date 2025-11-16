@@ -1,4 +1,4 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
@@ -10,14 +10,22 @@ import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 function App() {
   // const [count, setCount] = useState(0)
   // const [afficheserach ,setafficheserach] = useState(false)
+  const [lightMode, setLightMode] = useState(true);
+  const toggleLightMode = () => {
+    setLightMode(!lightMode);
+  };
+  const moodClass = lightMode ? "white" : "rgb(18, 27, 47)";
   return (
-    <div className="body">
+    <div className="body" style={{
+      backgroundColor: moodClass,
+      color: lightMode ? "black" : "white",
+    }}>
       <div>
         {/* header */}
         <header>
           <h3 className="title-app">Weather App</h3>
-          <button className="mood-button">
-            <DarkModeOutlinedIcon className="mood-icon" />
+          <button className="mood-button" onClick={toggleLightMode}>
+            <DarkModeOutlinedIcon className="mood-icon"/>
           </button>
         </header>
         {/* fin de header */}
