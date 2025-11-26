@@ -1,4 +1,4 @@
 import {createContext} from 'react';
 
-export  let  MoodContext = createContext();
+export let MoodContext = createContext();
 

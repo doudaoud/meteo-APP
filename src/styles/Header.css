@@ -1,7 +1,13 @@
 *{
     margin: 0;
+    /* height: 2000px; */
     /* padding: 0; */ 
+    
 }
+::-webkit-scrollbar{
+      visibility: hidden;
+      
+    }
 header{
   display: flex;
   justify-content: space-between;
@@ -12,13 +18,14 @@ header{
     /* background-image: linear-gradient(to right,rgb(43, 126, 255),rgb(22, 94, 252)); */
 }
 .title-app{
-  background-image: linear-gradient(to right,rgb(43, 126, 255),rgb(22, 94, 252));
- -webkit-background-clip: text;
-  color: transparent;
+   background-image: linear-gradient(to right,rgb(43, 126, 255),rgb(22, 94, 252));
+ -webkit-background-clip: text; 
+  color: transparent; 
   font-family: sans-serif;
   font-weight: 900;
   font-size: 30px;
   margin-left: 165px;
+  
 
 }
 /* .mood-button{

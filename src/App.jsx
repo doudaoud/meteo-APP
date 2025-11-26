@@ -6,13 +6,14 @@ import SunnyIcon from "@mui/icons-material/Sunny";
 import IconButton from "@mui/material/IconButton";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { MoodContext } from "./contexts/mood.js";
+import WeatherCard from "./components/WeatherCard.jsx";
 
 function App() {
   const [lightMode, setLightMode] = useState(true);
   const toggleLightMode = () => {
     setLightMode(!lightMode);
   };
-  const moodClass = lightMode ? "white" : "rgb(18, 27, 47)";
+  const moodClass = lightMode ? "rgb(243, 248, 255)" : "rgb(18, 27, 47)";
   return (
     <MoodContext.Provider value={{ lightMode, setLightMode, toggleLightMode }}>
       <div
@@ -21,6 +22,9 @@ function App() {
           backgroundColor: moodClass,
           color: lightMode ? "black" : "white",
           transition: "background-color 0.5s ease, color 0.5s ease",
+          height: 1000,
+          margin: 0,
+          padding: 0,
         }}
       >
         <div>
@@ -64,6 +68,12 @@ function App() {
             </button>
           </div>
           {/* fin de searchbar*/}
+        </div>
+        <div style={{
+          display: "flex",
+          justifyContent:"center"
+        }}>
+          <WeatherCard/>
         </div>
       </div>
     </MoodContext.Provider>
