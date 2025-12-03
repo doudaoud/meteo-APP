@@ -1,4 +1,7 @@
 import rainylogo from "../../public/meteo.png";
+import humidity from "../../public/humidity.png";
+// import windspeed from "../../public/windspeed.png";
+import WaterDropIcon from "@mui/icons-material/WaterDrop";
 export default function WeatherCard() {
   return (
     <div
@@ -10,16 +13,30 @@ export default function WeatherCard() {
         width: 800,
         height: 610,
         borderRadius: 30,
-        paddingTop:50
+        paddingTop: 50,
       }}
     >
-      <h1>london, uk</h1>
-      <h3>Rainy</h3>
+      <h1
+        style={{
+          fontFamily: "sans-serif",
+          fontSize: "50px",
+          fontWeight: "900",
+          color: "black",
+        }}
+      >
+        london, uk
+      </h1>
+      <h3
+        style={{
+          color: "rgb(92, 101, 107)",
+        }}
+      >
+        Rainy
+      </h3>
       <div
         className="tempandlogo"
         style={{
           display: "flex",
-          // backgroundColor: "red",
           width: 400,
           height: 200,
           marginTop: 50,
@@ -45,16 +62,22 @@ export default function WeatherCard() {
           style={{
             margin: "auto",
             color: "rgb(56, 140, 255)",
+            fontSize: "75px",
+            fontFamily: "sans-serif",
+            fontWeight: "900",
+            textAlign: "center",
+            marginLeft: -30,
+            // backgroundColor: "red",
+            // borderRadius: "50%",
           }}
         >
-          <h2>8 temps 0 sercuse</h2>
+          <h2>12</h2>
         </div>
       </div>
       <div
         className="wind-and-humidity"
         style={{
           display: "flex",
-          // backgroundColor: "skyblue",
           width: "100%",
           justifyContent: "space-around",
           height: "200px",
@@ -70,11 +93,42 @@ export default function WeatherCard() {
             backgroundColor: "rgb(227, 239, 255)",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
+            flexFlow: "column",
             borderRadius: "30px",
+            boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.385)",
           }}
         >
-          <p>humidity</p>
+          <span
+            style={{
+              marginLeft: "30px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              color: "rgb(44, 128, 255)",
+            }}
+          >
+            <WaterDropIcon />{" "}
+            <p
+              style={{
+                color: "rgb(119, 123, 121)",
+                fontSize: "17px",
+                fontFamily: "sans-serif",
+                fontWeight: "bold",
+              }}
+            >
+              Humidity
+            </p>
+          </span>
+          <h2
+            style={{
+              marginLeft: "30px",
+              fontFamily: "sans-serif",
+              fontWeight: "900",
+              fontSize: "40px",
+            }}
+          >
+            65%
+          </h2>
         </div>
         <div
           className="wind-speed"
@@ -86,6 +140,7 @@ export default function WeatherCard() {
             justifyContent: "center",
             alignItems: "center",
             borderRadius: "30px",
+            boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.385)",
           }}
         >
           <p>la vitesse de von</p>

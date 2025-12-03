@@ -3,7 +3,6 @@ import Sarchbar from "./components/Sarchbar";
 import "./styles/Header.css";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import SunnyIcon from "@mui/icons-material/Sunny";
-import IconButton from "@mui/material/IconButton";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { MoodContext } from "./contexts/mood.js";
 import WeatherCard from "./components/WeatherCard.jsx";
