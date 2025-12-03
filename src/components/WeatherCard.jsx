@@ -1,4 +1,3 @@
-import React from 'react'
 import rainylogo from "../../public/meteo.png";
 export default function WeatherCard() {
   return (
