@@ -21,7 +21,7 @@ function App() {
           backgroundColor: moodClass,
           color: lightMode ? "black" : "white",
           transition: "background-color 0.5s ease, color 0.5s ease",
-          height: 1000,
+          // height: 1000,
           margin: 0,
           padding: 0,
         }}
@@ -68,12 +68,39 @@ function App() {
           </div>
           {/* fin de searchbar*/}
         </div>
-        <div style={{
-          display: "flex",
-          justifyContent:"center"
-        }}>
-          <WeatherCard/>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <WeatherCard />
         </div>
+        {/* debut de la partie de la meteo de la semaine */}
+        <div
+          style={{
+            height: "200px",
+            width: "1353px",
+            margin: "auto ",
+            marginTop: "40px",
+            backgroundColor: "rgb(227, 239, 255)",
+            display: "flex",
+            overflowX: "scroll",
+            borderRadius: "30px",
+          }}
+        >
+          <h2
+            style={{
+              marginLeft: "30px",
+              fontFamily: "sans-serif",
+              fontWeight: "900",
+              fontSize: "40px",
+            }}
+          >
+            7-Day Forecast
+          </h2>
+        </div>
+        {/* fin de la partie de la meteo de la semaine */}
       </div>
     </MoodContext.Provider>
   );

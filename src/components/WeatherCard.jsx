@@ -66,8 +66,6 @@ export default function WeatherCard() {
             fontWeight: "900",
             textAlign: "center",
             marginLeft: -30,
-            // backgroundColor: "red",
-            // borderRadius: "50%",
           }}
         >
           <h2>12</h2>
