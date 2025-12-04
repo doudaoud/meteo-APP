@@ -1,7 +1,6 @@
 import rainylogo from "../../public/meteo.png";
-import humidity from "../../public/humidity.png";
-// import windspeed from "../../public/windspeed.png";
 import WaterDropIcon from "@mui/icons-material/WaterDrop";
+import { FaWind } from "react-icons/fa";
 export default function WeatherCard() {
   return (
     <div
@@ -138,12 +137,43 @@ export default function WeatherCard() {
             backgroundColor: "rgb(227, 239, 255)",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
+            flexFlow: "column",
             borderRadius: "30px",
             boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.385)",
           }}
         >
-          <p>la vitesse de von</p>
+          <span
+            style={{
+              marginLeft: "30px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              color: "rgb(44, 128, 255)",
+            }}
+          >
+           <FaWind />
+            <p
+              style={{
+                color: "rgb(119, 123, 121)",
+                fontSize: "17px",
+                fontFamily: "sans-serif",
+                fontWeight: "bold",
+              }}
+            >
+              Wind Speed
+            </p>
+          </span>
+
+          <h2
+            style={{
+              marginLeft: "30px",
+              fontFamily: "sans-serif",
+              fontWeight: "900",
+              fontSize: "40px",
+            }}
+          >
+            12 km/h
+          </h2>
         </div>
       </div>
     </div>
