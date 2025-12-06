@@ -1,14 +1,16 @@
-import { useState } from "react";
+
 import "../styles/searchbar.css";
 import { useContext } from "react";
 import { MoodContext } from "../contexts/mood.js";
+import { CityContext } from "../contexts/city.js";
 export default function Sarchbar() {
-  const [city, setCity] = useState("");
+  const {city, setCity} = useContext(CityContext);
   //  la fonction handleChange elle fait la liason entre le input et le state
   const handleChange = (event) => {
     setCity(event.target.value);
   };
   const { lightMode } = useContext(MoodContext);
+
   return (
     <>
       <input

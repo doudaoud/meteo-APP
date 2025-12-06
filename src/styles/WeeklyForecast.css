@@ -33,9 +33,6 @@
     scrollbar-width: auto;
     scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
-
-
-
  /* Optional: Custom Scrollbar if user prefers it visible */
 .cards-container::-webkit-scrollbar {
     height: 8px;

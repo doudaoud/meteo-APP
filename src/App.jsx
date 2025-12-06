@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sarchbar from "./components/Sarchbar";
 import "./styles/Header.css";
 import "./styles/WeeklyForecast.css";
@@ -8,124 +8,148 @@ import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { MoodContext } from "./contexts/mood.js";
 import WeatherCard from "./components/WeatherCard.jsx";
 import SemaineCard from "./components/SemaineCard.jsx";
-
+import { CityContext } from "./contexts/city.js";
+import axios from "axios";
 function App() {
+  const [city, setCity] = useState("Alger");
   const [lightMode, setLightMode] = useState(true);
+  const [clicked, setClicked] = useState(false);
   const toggleLightMode = () => {
     setLightMode(!lightMode);
   };
   const moodClass = lightMode ? "rgb(243, 248, 255)" : "rgb(18, 27, 47)";
+  // pour l'api
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=7c2dc7e52baa0798d7bd98bbd3d79be2&units=metric`
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [clicked == true]);
   return (
     <MoodContext.Provider value={{ lightMode }}>
-      <div
-        className="body"
-        style={{
-          backgroundColor: moodClass,
-          color: lightMode ? "black" : "white",
-          transition: "background-color 0.5s ease, color 0.5s ease",
-          // height: 1000,
-          margin: 0,
-          padding: 0,
-        }}
-      >
-        <div>
-          {/* header */}
-          <header
-            style={{
-              borderBottom: lightMode
-                ? "1px solid rgb(219, 234, 254)"
-                : "1px solid rgb(40, 57, 85)",
-              transition: "border-bottom 0.5s ease",
-            }}
-          >
-            <h3 className="title-app">Weather App</h3>
-            <button
-              className="mood-button"
-              onClick={toggleLightMode}
-              style={{
-                outline: "none",
-                border: "none",
-                color: "rgb(22, 94, 252)",
-                cursor: "pointer",
-                height: "40px",
-                width: "40px",
-                backgroundColor: lightMode ? "white" : "rgb(18, 27, 47)",
-                borderRadius: "50%",
-                boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.385)",
-                transition:
-                  "transform 0.5s, background-color 0.5s ease, color 0.5s ease",
-                marginRight: "165px",
-              }}
-            >
-              {lightMode ? <DarkModeOutlinedIcon /> : <SunnyIcon />}
-            </button>
-          </header>
-          {/* fin de header */}
-          {/* searchbar */}
-          <div className="searchbar-container">
-            <Sarchbar />
-            <button className="search-button">
-              <SearchSharpIcon className="search-icon" />
-            </button>
-          </div>
-          {/* fin de searchbar*/}
-        </div>
+      <CityContext.Provider value={{ city, setCity }}>
         <div
+          className="body"
           style={{
-            display: "flex",
-            justifyContent: "center",
+            backgroundColor: moodClass,
+            color: lightMode ? "black" : "white",
+            transition: "background-color 0.5s ease, color 0.5s ease",
+            // height: 1000,
+            margin: 0,
+            padding: 0,
           }}
         >
-          <WeatherCard />
-        </div>
-        {/* debut de la partie de la meteo de la semaine */}
-        <div className="weekly-forecast-section">
-          <h2 className="weekly-forecast-title">
-            7-Day Forecast    
-          </h2>
-          <div className="cards-container">
-            <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
-          <SemaineCard/>
+          <div>
+            {/* header */}
+            <header
+              style={{
+                borderBottom: lightMode
+                  ? "1px solid rgb(219, 234, 254)"
+                  : "1px solid rgb(40, 57, 85)",
+                transition: "border-bottom 0.5s ease",
+              }}
+            >
+              <h3 className="title-app">Weather App</h3>
+              <button
+                className="mood-button"
+                onClick={toggleLightMode}
+                style={{
+                  outline: "none",
+                  border: "none",
+                  color: "rgb(22, 94, 252)",
+                  cursor: "pointer",
+                  height: "40px",
+                  width: "40px",
+                  backgroundColor: lightMode ? "white" : "rgb(18, 27, 47)",
+                  borderRadius: "50%",
+                  boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.385)",
+                  transition:
+                    "transform 0.5s, background-color 0.5s ease, color 0.5s ease",
+                  marginRight: "165px",
+                }}
+              >
+                {lightMode ? <DarkModeOutlinedIcon /> : <SunnyIcon />}
+              </button>
+            </header>
+            {/* fin de header */}
+            {/* searchbar */}
+            <div className="searchbar-container">
+              <Sarchbar />
+              <button
+                className="search-button"
+                onClick={() => {
+                  setClicked(true);
+                  setTimeout(() => {
+                    setClicked(false);
+                  }, 3000);
+                }}
+              >
+                <SearchSharpIcon className="search-icon" />
+              </button>
+            </div>
+            {/* fin de searchbar*/}
           </div>
-          
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <WeatherCard />
+          </div>
+          {/* debut de la partie de la meteo de la semaine */}
+          <div className="weekly-forecast-section">
+            <h2 className="weekly-forecast-title">7-Day Forecast</h2>
+            <div className="cards-container">
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+              <SemaineCard />
+            </div>
+          </div>
+          {/* fin de la partie de la meteo de la semaine */}
         </div>
-        {/* fin de la partie de la meteo de la semaine */}
-      </div>
+      </CityContext.Provider>
     </MoodContext.Provider>
   );
 }

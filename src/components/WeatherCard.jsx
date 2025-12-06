@@ -2,6 +2,7 @@ import rainylogo from "../../public/meteo.png";
 import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import { FaWind } from "react-icons/fa";
 export default function WeatherCard() {
+  
   return (
     <div
       style={{
