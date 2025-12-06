@@ -1,0 +1,125 @@
+.weekly-forecast-section {
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1400px;
+    background: rgba(255, 255, 255, 0.2); /* Glassmorphism base */
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 20px 0;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Contains the scroll */
+}
+
+.weekly-forecast-title {
+    margin-left: 30px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: inherit; /* Inherits from parent (handled by Theme/MoodContext) */
+    margin-bottom: 20px;
+}
+
+.cards-container {
+    display: flex;
+    gap: 20px;
+    padding: 10px 30px 30px 30px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    
+    /* Ensure scrollbar is visible */
+    scrollbar-width: auto;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+
+
+ /* Optional: Custom Scrollbar if user prefers it visible */
+.cards-container::-webkit-scrollbar {
+    height: 8px;
+}
+.cards-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.cards-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+.semaine-card {
+    min-width: 130px;
+    padding: 25px 20px;
+    border-radius: 28px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 8px 32px rgba(31, 38, 135, 0.05),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.semaine-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+        0 15px 45px rgba(31, 38, 135, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.8));
+}
+
+.semaine-card h3.day-name {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2c3e50;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.semaine-card .weather-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));
+    transition: transform 0.4s ease;
+}
+
+.semaine-card:hover .weather-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.semaine-card .weather-desc {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.semaine-card .temps-matin-soir {
+    display: flex;
+    gap: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+
+.semaine-card .temps-matin-soir p {
+    margin: 0;
+}
+
+.semaine-card .temp-high {
+    color: #2c3e50;
+}
+
+.semaine-card .temp-low {
+    color: #94a3b8;
+}

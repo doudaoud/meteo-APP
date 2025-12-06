@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Sarchbar from "./components/Sarchbar";
 import "./styles/Header.css";
+import "./styles/WeeklyForecast.css";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import SunnyIcon from "@mui/icons-material/Sunny";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { MoodContext } from "./contexts/mood.js";
 import WeatherCard from "./components/WeatherCard.jsx";
+import SemaineCard from "./components/SemaineCard.jsx";
 
 function App() {
   const [lightMode, setLightMode] = useState(true);
@@ -14,7 +16,7 @@ function App() {
   };
   const moodClass = lightMode ? "rgb(243, 248, 255)" : "rgb(18, 27, 47)";
   return (
-    <MoodContext.Provider value={{ lightMode, setLightMode, toggleLightMode }}>
+    <MoodContext.Provider value={{ lightMode }}>
       <div
         className="body"
         style={{
@@ -77,28 +79,50 @@ function App() {
           <WeatherCard />
         </div>
         {/* debut de la partie de la meteo de la semaine */}
-        <div
-          style={{
-            height: "200px",
-            width: "1353px",
-            margin: "auto ",
-            marginTop: "40px",
-            backgroundColor: "rgb(227, 239, 255)",
-            display: "flex",
-            overflowX: "scroll",
-            borderRadius: "30px",
-          }}
-        >
-          <h2
-            style={{
-              marginLeft: "30px",
-              fontFamily: "sans-serif",
-              fontWeight: "900",
-              fontSize: "40px",
-            }}
-          >
-            7-Day Forecast
+        <div className="weekly-forecast-section">
+          <h2 className="weekly-forecast-title">
+            7-Day Forecast    
           </h2>
+          <div className="cards-container">
+            <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          <SemaineCard/>
+          </div>
+          
         </div>
         {/* fin de la partie de la meteo de la semaine */}
       </div>
