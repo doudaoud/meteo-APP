@@ -9,9 +9,10 @@ import { MoodContext } from "./contexts/mood.js";
 import WeatherCard from "./components/WeatherCard.jsx";
 import SemaineCard from "./components/SemaineCard.jsx";
 import { CityContext } from "./contexts/city.js";
+import { DataContext } from "./contexts/data.js";
 import axios from "axios";
 function App() {
-  const [city, setCity] = useState("Alger");
+  const [city, setCity] = useState("");
   const [lightMode, setLightMode] = useState(true);
   const [clicked, setClicked] = useState(false);
   const toggleLightMode = () => {
@@ -19,20 +20,29 @@ function App() {
   };
   const moodClass = lightMode ? "rgb(243, 248, 255)" : "rgb(18, 27, 47)";
   // pour l'api
+  const [data, setData] = useState(null);
+  function vrtif(){
+    if(city ===""){
+      return "Alger"
+    }
+    return city
+  }
 
   useEffect(() => {
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=7c2dc7e52baa0798d7bd98bbd3d79be2&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${vrtif()}&appid=7c2dc7e52baa0798d7bd98bbd3d79be2&units=metric`
       )
       .then((res) => {
         console.log(res.data);
+        setData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [clicked == true]);
+  }, [clicked === true]);
   return (
+    <DataContext.Provider value={{ data }}> 
     <MoodContext.Provider value={{ lightMode }}>
       <CityContext.Provider value={{ city, setCity }}>
         <div
@@ -128,29 +138,13 @@ function App() {
               <SemaineCard />
               <SemaineCard />
               <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
             </div>
           </div>
           {/* fin de la partie de la meteo de la semaine */}
         </div>
       </CityContext.Provider>
     </MoodContext.Provider>
+    </DataContext.Provider>
   );
 }
 

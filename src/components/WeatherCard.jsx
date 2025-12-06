@@ -1,8 +1,10 @@
 import rainylogo from "../../public/meteo.png";
 import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import { FaWind } from "react-icons/fa";
+import { useContext } from "react";
+import { DataContext } from "../contexts/data.js";
 export default function WeatherCard() {
-  
+  const {data} = useContext(DataContext)
   return (
     <div
       style={{
@@ -24,7 +26,7 @@ export default function WeatherCard() {
           color: "black",
         }}
       >
-        london, uk
+        {data?.name}, {data?.sys?.country}
       </h1>
       <h3
         style={{
@@ -69,7 +71,7 @@ export default function WeatherCard() {
             marginLeft: -30,
           }}
         >
-          <h2>12</h2>
+          <h2>12&deg;C</h2>
         </div>
       </div>
       <div
