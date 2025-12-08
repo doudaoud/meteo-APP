@@ -4,7 +4,11 @@ import { FaWind } from "react-icons/fa";
 import { useContext } from "react";
 import { DataContext } from "../contexts/data.js";
 export default function WeatherCard() {
-  const {data} = useContext(DataContext)
+  const { data } = useContext(DataContext);
+  console.log(data);
+  let icon = data?.weather[0].icon;
+  let url_icon = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
+  console.log(typeof data?.main?.temp);
   return (
     <div
       style={{
@@ -33,7 +37,7 @@ export default function WeatherCard() {
           color: "rgb(92, 101, 107)",
         }}
       >
-        Rainy
+        {data?.weather[0].description}
       </h3>
       <div
         className="tempandlogo"
@@ -42,6 +46,7 @@ export default function WeatherCard() {
           width: 400,
           height: 200,
           marginTop: 50,
+          gap: 10,
         }}
       >
         <div
@@ -51,13 +56,23 @@ export default function WeatherCard() {
           }}
         >
           <img
-            src={rainylogo}
+            src={url_icon}
             style={{
-              width: "100px",
-              height: "100px",
+              width: "150px",
+              height: "150px",
             }}
           />
-          <p className="how-you-feel">you feels like 5</p>
+          <p className="how-you-feel"style={
+            {
+              marginTop:'-20px',
+               marginLeft: "-10px",
+              fontSize:'20px',
+              fontFamily: "sans-serif",
+              fontWeight: "900",
+              textAlign: "center",
+              color: "rgb(56, 140, 255)",
+            }
+          } >you feels like {data?.main?.feels_like}</p>
         </div>
         <div
           className="temps"
@@ -71,7 +86,7 @@ export default function WeatherCard() {
             marginLeft: -30,
           }}
         >
-          <h2>12&deg;C</h2>
+          <h2> {Math.round(data?.main?.temp)}&deg;</h2>
         </div>
       </div>
       <div
@@ -127,7 +142,8 @@ export default function WeatherCard() {
               fontSize: "40px",
             }}
           >
-            65%
+            {data?.main?.humidity}%
+            {/* 65% */}
           </h2>
         </div>
         <div
@@ -152,7 +168,7 @@ export default function WeatherCard() {
               color: "rgb(44, 128, 255)",
             }}
           >
-           <FaWind />
+            <FaWind />
             <p
               style={{
                 color: "rgb(119, 123, 121)",
@@ -173,7 +189,8 @@ export default function WeatherCard() {
               fontSize: "40px",
             }}
           >
-            12 km/h
+            {Math.round((data?.wind?.speed * 3600) / 1000)} km/h
+            {/* 12 km/h */}
           </h2>
         </div>
       </div>

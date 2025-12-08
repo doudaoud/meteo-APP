@@ -12,17 +12,18 @@ import { CityContext } from "./contexts/city.js";
 import { DataContext } from "./contexts/data.js";
 import axios from "axios";
 function App() {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(null);
   const [lightMode, setLightMode] = useState(true);
   const [clicked, setClicked] = useState(false);
   const toggleLightMode = () => {
     setLightMode(!lightMode);
+    
   };
   const moodClass = lightMode ? "rgb(243, 248, 255)" : "rgb(18, 27, 47)";
   // pour l'api
   const [data, setData] = useState(null);
   function vrtif(){
-    if(city ===""){
+    if(city ===null){
       return "Alger"
     }
     return city
@@ -41,6 +42,8 @@ function App() {
         console.log(err);
       });
   }, [clicked === true]);
+  // fin de l'api
+
   return (
     <DataContext.Provider value={{ data }}> 
     <MoodContext.Provider value={{ lightMode }}>
@@ -118,20 +121,6 @@ function App() {
           <div className="weekly-forecast-section">
             <h2 className="weekly-forecast-title">7-Day Forecast</h2>
             <div className="cards-container">
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
-              <SemaineCard />
               <SemaineCard />
               <SemaineCard />
               <SemaineCard />
