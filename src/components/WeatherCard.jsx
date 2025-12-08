@@ -3,8 +3,10 @@ import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import { FaWind } from "react-icons/fa";
 import { useContext } from "react";
 import { DataContext } from "../contexts/data.js";
+import { MoodContext } from "../contexts/mood.js";
 export default function WeatherCard() {
   const { data } = useContext(DataContext);
+  const { lightMode } = useContext(MoodContext);
   console.log(data);
   let icon = data?.weather[0].icon;
   let url_icon = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
@@ -15,11 +17,13 @@ export default function WeatherCard() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor: "white",
+        backgroundColor: lightMode ? "white" : "rgb(25, 38, 62)",
         width: 800,
         height: 610,
         borderRadius: 30,
         paddingTop: 50,
+        transition: "background-color 0.5s ease",
+        border: lightMode ? "none" : "1px solid rgb(40, 57, 85)",
       }}
     >
       <h1
@@ -27,14 +31,15 @@ export default function WeatherCard() {
           fontFamily: "sans-serif",
           fontSize: "50px",
           fontWeight: "900",
-          color: "black",
+          color: lightMode ? "black" : "white",
+          transition: "color 0.5s ease",
         }}
       >
         {data?.name}, {data?.sys?.country}
       </h1>
       <h3
         style={{
-          color: "rgb(92, 101, 107)",
+          color: lightMode ? "rgb(92, 101, 107)" : "rgb(180, 180, 180)",
         }}
       >
         {data?.weather[0].description}
@@ -57,6 +62,7 @@ export default function WeatherCard() {
         >
           <img
             src={url_icon}
+            className="weather-icon-animated"
             style={{
               width: "150px",
               height: "150px",
@@ -105,12 +111,13 @@ export default function WeatherCard() {
           style={{
             height: "140px",
             width: "340px",
-            backgroundColor: "rgb(227, 239, 255)",
+            backgroundColor: lightMode ? "rgb(227, 239, 255)" : "rgb(18, 27, 47)",
             display: "flex",
             justifyContent: "center",
             flexFlow: "column",
             borderRadius: "30px",
             boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.385)",
+            transition: "background-color 0.5s ease",
           }}
         >
           <span
@@ -125,7 +132,7 @@ export default function WeatherCard() {
             <WaterDropIcon />{" "}
             <p
               style={{
-                color: "rgb(119, 123, 121)",
+                color: lightMode ? "rgb(119, 123, 121)" : "rgb(180, 180, 180)",
                 fontSize: "17px",
                 fontFamily: "sans-serif",
                 fontWeight: "bold",
@@ -140,6 +147,7 @@ export default function WeatherCard() {
               fontFamily: "sans-serif",
               fontWeight: "900",
               fontSize: "40px",
+              color: lightMode ? "black" : "white",
             }}
           >
             {data?.main?.humidity}%
@@ -151,12 +159,13 @@ export default function WeatherCard() {
           style={{
             height: "140px",
             width: "340px",
-            backgroundColor: "rgb(227, 239, 255)",
+            backgroundColor: lightMode ? "rgb(227, 239, 255)" : "rgb(18, 27, 47)",
             display: "flex",
             justifyContent: "center",
             flexFlow: "column",
             borderRadius: "30px",
             boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.385)",
+            transition: "background-color 0.5s ease",
           }}
         >
           <span
@@ -171,7 +180,7 @@ export default function WeatherCard() {
             <FaWind />
             <p
               style={{
-                color: "rgb(119, 123, 121)",
+                color: lightMode ? "rgb(119, 123, 121)" : "rgb(180, 180, 180)",
                 fontSize: "17px",
                 fontFamily: "sans-serif",
                 fontWeight: "bold",
@@ -187,6 +196,7 @@ export default function WeatherCard() {
               fontFamily: "sans-serif",
               fontWeight: "900",
               fontSize: "40px",
+              color: lightMode ? "black" : "white",
             }}
           >
             {Math.round((data?.wind?.speed * 3600) / 1000)} km/h
