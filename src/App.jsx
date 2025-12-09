@@ -168,12 +168,9 @@ function App() {
             <div className="weekly-forecast-section">
               <h2 className="weekly-forecast-title">7-Day Forecast</h2>
               <div className="cards-container">
-                <SemaineCard />
-                <SemaineCard />
-                <SemaineCard />
-                <SemaineCard />
-                <SemaineCard />
-                <SemaineCard />
+                {days7?.slice(0, 5).map((day, index) => (
+                  <SemaineCard key={index} dayData={day} />
+                ))}
               </div>
             </div>
             {/* fin de la partie de la meteo de la semaine */}

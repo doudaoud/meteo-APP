@@ -1,0 +1,57 @@
+.semaine-card {
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  font-family: sans-serif;
+  transition: background-color 0.5s ease, border 0.5s ease;
+  width: 150px; /* Ajout d'une largeur pour un meilleur alignement */
+}
+
+/* --- Light Mode --- */
+.semaine-card.light {
+  background-color: white;
+  border: 1px solid #eee;
+}
+
+.semaine-card.light .day-name {
+  color: black;
+}
+
+.semaine-card.light .weather-desc {
+  color: #5c656b;
+}
+
+.semaine-card.light .temp-high,
+.semaine-card.light .temp-low {
+  color: black;
+}
+
+/* --- Dark Mode --- */
+.semaine-card.dark {
+  background-color: rgb(25, 38, 62);
+  border: 1px solid rgb(40, 57, 85);
+}
+
+.semaine-card.dark .day-name {
+  color: white;
+}
+
+.semaine-card.dark .weather-desc {
+  color: #b4b4b4;
+}
+
+.semaine-card.dark .temp-high,
+.semaine-card.dark .temp-low {
+  color: white;
+}
+
+.weather-icon {
+  width: 80px; /* Ajustement de la taille de l'icône */
+  height: 80px;
+}
+
+.temps-matin-soir {
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+}
