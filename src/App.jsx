@@ -60,19 +60,28 @@ function App() {
         ` https://api.openweathermap.org/data/2.5/forecast?q=${vrtif()}&units=metric&appid=7c2dc7e52baa0798d7bd98bbd3d79be2`
       )
       .then((res) => {
+        const forecasts = res.data.list;
+        const dailyForecasts = {};
+        const today = date_today();
 
-        let days = res.data.list.filter((day) => {
-          const date_haujordui = date_today();
-          console.log(date_haujordui);
-          if (day.dt_txt.includes(date_haujordui)) {
-            return false;
-          } else {
-            return true;
+        for (const forecast of forecasts) {
+          const forecastDate = forecast.dt_txt.substring(0, 10);
+
+          if (forecastDate === today) {
+            continue; // On ignore les prévisions pour aujourd'hui
           }
-        });
-        console.log("days affiche");
-        console.log(days);
-        setJour(days);
+
+          const existingForecast = dailyForecasts[forecastDate];
+
+          if (!existingForecast || forecast.dt_txt.includes("12:00:00")) {
+            dailyForecasts[forecastDate] = forecast;
+          }
+        }
+
+        const filteredDays = Object.values(dailyForecasts);
+        // console.log("Jours filtrés affichés :");
+        // console.log(filteredDays);
+        setJour(filteredDays);
       })
 
       .catch((err) => {
@@ -81,13 +90,7 @@ function App() {
       });
   }, [clicked === true]);
   console.log(days7);
-  // fin de api de la semaine
-  // console.log(date_haujordui);
-  // console.log(new Date().toLocaleDateString());
-  function filter_days() {
-    const date_haujordui = date_today();
-    
-  }
+
   return (
     <DataContext.Provider value={{ data }}>
       <MoodContext.Provider value={{ lightMode }}>
