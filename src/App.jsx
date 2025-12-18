@@ -11,6 +11,7 @@ import SemaineCard from "./components/SemaineCard.jsx";
 import { CityContext } from "./contexts/city.js";
 import { DataContext } from "./contexts/data.js";
 import axios from "axios";
+import Footer from "./components/Footer";
 
 function App() {
   const [city, setCity] = useState(null);
@@ -101,11 +102,14 @@ function App() {
               backgroundColor: moodClass,
               color: lightMode ? "black" : "white",
               transition: "background-color 0.5s ease, color 0.5s ease",
-              // height: 1000,
+              minHeight: "100vh", // Fix: cover full viewport height
+              display: "flex",
+              flexDirection: "column",
               margin: 0,
               padding: 0,
             }}
           >
+            <div style={{ flex: 1 }}>
             <div>
               {/* header */}
               <header
@@ -173,7 +177,9 @@ function App() {
                 ))}
               </div>
             </div>
+            </div>
             {/* fin de la partie de la meteo de la semaine */}
+            <Footer />
           </div>
         </CityContext.Provider>
       </MoodContext.Provider>
