@@ -1,6 +1,7 @@
 .textfeild {
-  height: 30px ;
-  width: 500px;
+  height: 30px;
+  width: 100%;
+  max-width: 500px;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.385);
   border: 0.5px solid rgb(189, 191, 193);
@@ -10,46 +11,56 @@
   font-weight: 600;
   font-size: 20px;
   padding-left: 20px;
+  box-sizing: border-box; /* Ensure padding doesn't overflow width */
 }
+
 .textfeild::placeholder {
   color: rgb(92, 101, 107);
   font-family: sans-serif;
   font-weight: 600;
   font-size: 20px;
-  /* position: absolute;
-  left: 20px;
-  bottom: 5px; */
-  
 }
 
-
 .textfeild:focus {
-  transform: scale(1.2);
+  transform: scale(1.05); /* Reduced scale to prevent overflow */
   border-color: rgb(41, 124, 255);
   outline: none;
 }
+
 .searchbar-container {
   height: 150px;
-  vertical-align: auto;
+  width: 90%; /* Fluid container */
+  max-width: 600px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
-.search-button{
-    outline: none;
-    border: none;
-    color: white;
-    background-color: rgb(22, 94, 252);
-    cursor: pointer;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.385);
-    transition: transform 0.5s ;
-    margin-right: 15px !important;
-    z-index: 10;
-    
+
+.search-button {
+  outline: none;
+  border: none;
+  color: white;
+  background-color: rgb(22, 94, 252);
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.385);
+  transition: transform 0.5s;
+  margin-left: 10px !important; /* Changed from right to left for better spacing */
+  margin-right: 0 !important;
+  z-index: 10;
+  flex-shrink: 0; /* Prevent button shrinking */
 }
-.search-button:hover{
+
+.search-button:hover {
   transform: scale(1.1);
+}
+
+@media only screen and (max-width: 600px) {
+  .textfeild:focus {
+    transform: none; /* Disable zoom on mobile to prevent layout issues */
+  }
 }

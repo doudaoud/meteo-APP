@@ -8,74 +8,46 @@
       visibility: hidden;
       
     } */
-header{
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-color: aqua; */
   height: 68px;
-  border-bottom: 1px solid rgb(219, 234, 254) ;
-    /* background-image: linear-gradient(to right,rgb(43, 126, 255),rgb(22, 94, 252)); */
+  border-bottom: 1px solid rgb(219, 234, 254);
+  padding: 0 5%; /* Responsive padding */
+  max-width: 1400px; /* Max width constraint */
+  margin: 0 auto; /* Center the header content */
 }
-.title-app{
-   background-image: linear-gradient(to right,rgb(43, 126, 255),rgb(22, 94, 252));
- -webkit-background-clip: text; 
-  color: transparent; 
+
+.title-app {
+  background-image: linear-gradient(
+    to right,
+    rgb(43, 126, 255),
+    rgb(22, 94, 252)
+  );
+  -webkit-background-clip: text;
+  color: transparent;
   font-family: sans-serif;
   font-weight: 900;
   font-size: 30px;
-  margin-left: 165px;
+  /* Removed fixed margin-left */
 }
-/* .mood-button{
-    outline: none;
-    border: none;
-    color: rgb(22, 94, 252);
-    cursor: pointer;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    box-shadow: 5px 5px 10px  rgba(0, 0, 0, 0.385);
-    transition: transform 0.5s ;
-    margin-right: 165px;
-} */
-.mood-button:hover{
+
+.mood-button:hover {
   transform: scale(1.1);
 }
 
-.mood-button:active{
+.mood-button:active {
   transform: scale(0.99);
-}              /* responsive header */
-@media only screen and (max-width: 600px) {
-  header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* background-color: aqua; */
-  height: 68px;
-  border-bottom: 1px solid rgb(219, 234, 254) ;
-    /* background-image: linear-gradient(to right,rgb(43, 126, 255),rgb(22, 94, 252)); */
 }
-  .mood-button {
-    outline: none;
-    border: none;
-    color: rgb(22, 94, 252);
-    cursor: pointer;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.385);
-    transition: transform 0.5s ;
-    margin-right: 15px !important;
-  }
 
+/* responsive header */
+@media only screen and (max-width: 600px) {
+  header {
+    padding: 0 15px;
+  }
+  
   .title-app {
-    background-image: linear-gradient(to right, rgb(43, 126, 255), rgb(22, 94, 252));
-    -webkit-background-clip: text;
-    color: transparent;
-    font-family: sans-serif;
-    font-weight: 900;
-    font-size: 30px;
-    margin-left: 15px !important;
-    
+    font-size: 24px; /* Smaller font on mobile */
   }
 }

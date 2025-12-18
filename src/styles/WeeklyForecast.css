@@ -34,6 +34,13 @@
     scrollbar-width: auto;
     scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
+
+@media only screen and (max-width: 900px) {
+    .cards-container {
+        justify-content: flex-start; /* Prevent clipping when scrolling is needed */
+    }
+}
+
  /* Optional: Custom Scrollbar if user prefers it visible */
 .cards-container::-webkit-scrollbar {
     height: 8px;

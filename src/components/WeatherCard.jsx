@@ -4,6 +4,8 @@ import { FaWind } from "react-icons/fa";
 import { useContext } from "react";
 import { DataContext } from "../contexts/data.js";
 import { MoodContext } from "../contexts/mood.js";
+import "../styles/WeatherCard.css";
+
 export default function WeatherCard() {
   const { data } = useContext(DataContext);
   const { lightMode } = useContext(MoodContext);
@@ -11,179 +13,89 @@ export default function WeatherCard() {
   let icon = data?.weather[0].icon;
   let url_icon = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
   console.log(typeof data?.main?.temp);
+
+  const cardBackgroundColor = lightMode ? "white" : "rgb(25, 38, 62)";
+  const textColor = lightMode ? "black" : "white";
+  const subCardBg = lightMode ? "rgb(227, 239, 255)" : "rgb(18, 27, 47)";
+  const subTextColor = lightMode ? "rgb(119, 123, 121)" : "rgb(180, 180, 180)";
+  const borderColor = lightMode ? "none" : "1px solid rgb(40, 57, 85)";
+
   return (
     <div
+      className="weather-card-container"
       style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        backgroundColor: lightMode ? "white" : "rgb(25, 38, 62)",
-        width: 800,
-        height: 610,
-        borderRadius: 30,
-        paddingTop: 50,
-        transition: "background-color 0.5s ease",
-        border: lightMode ? "none" : "1px solid rgb(40, 57, 85)",
+        backgroundColor: cardBackgroundColor,
+        border: borderColor,
       }}
     >
       <h1
+        className="city-title"
         style={{
-          fontFamily: "sans-serif",
-          fontSize: "50px",
-          fontWeight: "900",
-          color: lightMode ? "black" : "white",
-          transition: "color 0.5s ease",
+          color: textColor,
         }}
       >
         {data?.name}, {data?.sys?.country}
       </h1>
       <h3
+        className="weather-desc"
         style={{
           color: lightMode ? "rgb(92, 101, 107)" : "rgb(180, 180, 180)",
         }}
       >
         {data?.weather[0].description}
       </h3>
-      <div
-        className="tempandlogo"
-        style={{
-          display: "flex",
-          width: 400,
-          height: 200,
-          marginTop: 50,
-          gap: 10,
-        }}
-      >
-        <div
-          className="logo"
-          style={{
-            margin: "auto",
-          }}
-        >
+      <div className="temp-section">
+        <div className="logo-container">
           <img
             src={url_icon}
             className="weather-icon-animated"
-            style={{
-              width: "150px",
-              height: "150px",
-            }}
+            alt="weather icon"
           />
-          <p className="how-you-feel"style={
-            {
-              marginTop:'-20px',
-               marginLeft: "-10px",
-              fontSize:'20px',
-              fontFamily: "sans-serif",
-              fontWeight: "900",
-              textAlign: "center",
-              color: "rgb(56, 140, 255)",
-            }
-          } >you feels like {data?.main?.feels_like}</p>
+          <p className="feels-like">you feels like {data?.main?.feels_like}</p>
         </div>
-        <div
-          className="temps"
-          style={{
-            margin: "auto",
-            color: "rgb(56, 140, 255)",
-            fontSize: "75px",
-            fontFamily: "sans-serif",
-            fontWeight: "900",
-            textAlign: "center",
-            marginLeft: -30,
-          }}
-        >
-          <h2> {Math.round(data?.main?.temp)}&deg;</h2>
+        <div className="temp-display-container">
+          <h2 className="temp-display"> {Math.round(data?.main?.temp)}&deg;</h2>
         </div>
       </div>
-      <div
-        className="wind-and-humidity"
-        style={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "space-around",
-          height: "200px",
-          alignItems: "center",
-          marginTop: 50,
-        }}
-      >
+      <div className="stats-section">
         <div
-          className="humidity"
+          className="stat-card"
           style={{
-            height: "140px",
-            width: "340px",
-            backgroundColor: lightMode ? "rgb(227, 239, 255)" : "rgb(18, 27, 47)",
-            display: "flex",
-            justifyContent: "center",
-            flexFlow: "column",
-            borderRadius: "30px",
-            boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.385)",
-            transition: "background-color 0.5s ease",
+            backgroundColor: subCardBg,
           }}
         >
-          <span
-            style={{
-              marginLeft: "30px",
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
-              color: "rgb(44, 128, 255)",
-            }}
-          >
+          <span className="stat-header">
             <WaterDropIcon />{" "}
             <p
+              className="stat-label"
               style={{
-                color: lightMode ? "rgb(119, 123, 121)" : "rgb(180, 180, 180)",
-                fontSize: "17px",
-                fontFamily: "sans-serif",
-                fontWeight: "bold",
+                color: subTextColor,
               }}
             >
               Humidity
             </p>
           </span>
           <h2
+            className="stat-value"
             style={{
-              marginLeft: "30px",
-              fontFamily: "sans-serif",
-              fontWeight: "900",
-              fontSize: "40px",
-              color: lightMode ? "black" : "white",
+              color: textColor,
             }}
           >
             {data?.main?.humidity}%
-            {/* 65% */}
           </h2>
         </div>
         <div
-          className="wind-speed"
+          className="stat-card"
           style={{
-            height: "140px",
-            width: "340px",
-            backgroundColor: lightMode ? "rgb(227, 239, 255)" : "rgb(18, 27, 47)",
-            display: "flex",
-            justifyContent: "center",
-            flexFlow: "column",
-            borderRadius: "30px",
-            boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.385)",
-            transition: "background-color 0.5s ease",
+            backgroundColor: subCardBg,
           }}
         >
-          <span
-            style={{
-              marginLeft: "30px",
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
-              color: "rgb(44, 128, 255)",
-            }}
-          >
+          <span className="stat-header">
             <FaWind />
             <p
+              className="stat-label"
               style={{
-                color: lightMode ? "rgb(119, 123, 121)" : "rgb(180, 180, 180)",
-                fontSize: "17px",
-                fontFamily: "sans-serif",
-                fontWeight: "bold",
+                color: subTextColor,
               }}
             >
               Wind Speed
@@ -191,19 +103,16 @@ export default function WeatherCard() {
           </span>
 
           <h2
+            className="stat-value"
             style={{
-              marginLeft: "30px",
-              fontFamily: "sans-serif",
-              fontWeight: "900",
-              fontSize: "40px",
-              color: lightMode ? "black" : "white",
+              color: textColor,
             }}
           >
             {Math.round((data?.wind?.speed * 3600) / 1000)} km/h
-            {/* 12 km/h */}
           </h2>
         </div>
       </div>
     </div>
   );
 }
+
