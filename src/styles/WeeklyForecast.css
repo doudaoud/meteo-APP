@@ -28,6 +28,7 @@
     padding: 10px 30px 30px 30px;
     overflow-x: auto;
     scroll-behavior: smooth;
+    justify-content: center;
     
     /* Ensure scrollbar is visible */
     scrollbar-width: auto;
